@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+
+    <variable type="com.example.mapapp.data.LoginViewModel"
+        name="loginviewModel"/>
+
+</data>
+
+
+    <RelativeLayout tools:context=".View.LoginActivity"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:layout_centerHorizontal="true"
+            android:text="Login Page"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/purple_700"/>
+
+    <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+
+
+
+        <EditText
+            android:id="@+id/idEdtPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            app:addTextChangedListener="@{loginviewModel.mobilenoTextWatcher}"
+            android:padding="8dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/edittext"
+            android:textColorHint="@android:color/darker_gray"
+            android:textColor="@color/black"
+            android:visibility="visible"
+            android:hint="Enter Mobile Number "
+            android:importantForAutofill="no"
+            android:inputType="phone" />
+
+        <!--Button for getting OTP-->
+        <Button
+            android:id="@+id/idBtnGetOtp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idEdtPhoneNumber"
+            android:layout_margin="10dp"
+            android:visibility="visible"
+            android:background="@drawable/logintextchange"
+            android:onClick="@{loginviewModel::onLoginClicked}"
+            android:enabled="true" android:text="Login"
+            android:textAllCaps="false" />
+
+        <!--Edittext for getting otp from user-->
+        <EditText
+            android:id="@+id/idEdtOtp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idBtnGetOtp"
+            android:padding="8dp"
+            app:addTextChangedListener="@{loginviewModel.otpTextWatcher}"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:background="@drawable/edittext"
+            android:textColorHint="@android:color/darker_gray"
+            android:textColor="@color/black"
+            android:hint="Enter OTP"
+            android:importantForAutofill="no"
+            android:inputType="phone" />
+
+        <!--button for verifying user OTP-->
+        <Button
+            android:id="@+id/idBtnVerify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idEdtOtp"
+            android:layout_margin="10dp"
+            android:visibility="gone"
+            android:background="@drawable/logintextchange"
+            android:onClick="@{loginviewModel::onLoginClickedbtn}"
+            android:enabled="true" android:text="Verify OTP"
+            android:textAllCaps="false"
+          />
+
+</LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</layout>
