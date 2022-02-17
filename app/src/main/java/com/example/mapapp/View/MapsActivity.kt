@@ -55,7 +55,8 @@ class MapsActivity : AppCompatActivity(),MapResultCallBacks, OnMapReadyCallback,
     private lateinit var mMap: GoogleMap
     private var REQUEST_LOCATION_CODE = 101
     lateinit var activitymapBinding :ActivityMapBinding
-
+    var lat: Double =0.0
+    var long: Double =0.0
 
 
     override fun onLocationChanged(location: Location?) {
@@ -65,6 +66,9 @@ class MapsActivity : AppCompatActivity(),MapResultCallBacks, OnMapReadyCallback,
         }
 
         //Place current location marker
+         lat=location!!.latitude
+        long=location.longitude
+        System.out.println(""+location.latitude + "location"+location.longitude)
         val latLng = LatLng(location!!.latitude, location.longitude)
         val geocoder = Geocoder(this, Locale.getDefault())
         val addresses: List<Address>?
@@ -94,7 +98,7 @@ class MapsActivity : AppCompatActivity(),MapResultCallBacks, OnMapReadyCallback,
         markerOptions.title(fulladdress+place)
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
         mCurrLocationMarker = mMap.addMarker(markerOptions)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f))
 
     }
 
@@ -166,7 +170,7 @@ class MapsActivity : AppCompatActivity(),MapResultCallBacks, OnMapReadyCallback,
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
-
+      mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat,long), 15.0f))
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
