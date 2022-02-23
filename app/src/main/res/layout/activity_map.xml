@@ -8,17 +8,34 @@
             name="mapviewModel"/>
 
     </data>
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.mapapp.View.MapsActivity">
+     
+    
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/idSearchView"
+        android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:elevation="5dp"
+         android:background="@android:color/holo_blue_light"
+         android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textStyle="bold"
+        app:iconifiedByDefault="false"
+        app:searchIcon="@null"
+        app:queryHint="Search Here" />
+
 
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/idSearchView"
+              
        />
 
 
@@ -27,5 +44,5 @@
 
 
 
-</LinearLayout>
+</RelativeLayout>
 </layout>
