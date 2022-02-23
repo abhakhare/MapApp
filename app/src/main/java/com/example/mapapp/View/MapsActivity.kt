@@ -57,7 +57,7 @@ class MapsActivity : AppCompatActivity(),MapResultCallBacks, OnMapReadyCallback,
     lateinit var activitymapBinding :ActivityMapBinding
     var lat: Double =0.0
     var long: Double =0.0
-
+    lateinit var serchv:SearchView
 
     override fun onLocationChanged(location: Location?) {
         mLastLocation = location
@@ -157,6 +157,24 @@ class MapsActivity : AppCompatActivity(),MapResultCallBacks, OnMapReadyCallback,
         enabled = service!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        
+        serchv = findViewById(R.id.idSearchView)
+
+        serchv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                //val locationSearch:EditText = findViewById<EditText>(R.id.editText)
+                lateinit var location: String
+                location = query.toString()
+               
+
+               return false
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+
+                return true
+            }
+        })
     }
 
     /**
