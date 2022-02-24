@@ -165,7 +165,7 @@ class MapsActivity : AppCompatActivity(),MapResultCallBacks, OnMapReadyCallback,
                 //val locationSearch:EditText = findViewById<EditText>(R.id.editText)
                 lateinit var location: String
                 location = query.toString()
-               
+                 searchLocation(location)
 
                return false
             }
@@ -253,4 +253,30 @@ class MapsActivity : AppCompatActivity(),MapResultCallBacks, OnMapReadyCallback,
             } else ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_LOCATION_CODE)
         }
     }
+    
+    override fun searchLocation(place: String) {
+
+        lateinit var location: String
+        location = place
+        var addressList: List<Address>? = null
+
+        if (location == null || location == "") {
+            Toast.makeText(applicationContext,"provide location",Toast.LENGTH_SHORT).show()
+        }
+        else{
+            val geoCoder = Geocoder(this)
+            try {
+                addressList = geoCoder.getFromLocationName(location, 1)
+
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            val address = addressList!![0]
+            val latLng = LatLng(address.latitude, address.longitude)
+            mMap!!.addMarker(MarkerOptions().position(latLng).title(location))
+            mMap!!.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+           // Toast.makeText(applicationContext, address.latitude.toString() + " " + address.longitude, Toast.LENGTH_LONG).show()
+        }
+    }
+
 }
