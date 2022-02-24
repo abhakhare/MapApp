@@ -25,8 +25,7 @@
         android:textColorHint="#FFFFFF"
         android:textStyle="bold"
         app:iconifiedByDefault="false"
-        app:searchIcon="@null"
-        app:queryHint="Search Here" />
+        app:queryHint="Search..." />
 
 
     <fragment
