@@ -275,7 +275,7 @@ class MapsActivity : AppCompatActivity(),MapResultCallBacks, OnMapReadyCallback,
             val latLng = LatLng(address.latitude, address.longitude)
             mMap!!.addMarker(MarkerOptions().position(latLng).title(location))
             mMap!!.animateCamera(CameraUpdateFactory.newLatLng(latLng))
-           // Toast.makeText(applicationContext, address.latitude.toString() + " " + address.longitude, Toast.LENGTH_LONG).show()
+         
         }
     }
 
